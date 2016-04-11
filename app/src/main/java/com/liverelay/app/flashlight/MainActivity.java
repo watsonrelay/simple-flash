@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     public boolean turnOnFlashLight() {
         if (mCamera == null) {
             mCamera = Camera.open();
-            mCamera.startPreview();
         }
+        mCamera.startPreview();
         autoOffHandler.removeCallbacksAndMessages(null);
         autoOffHandler.postDelayed(new Runnable() {
             @Override
@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     public boolean turnOffFlashLight() {
         autoOffHandler.removeCallbacksAndMessages(null);
+        mCamera.stopPreview();
         return setFlashMode(false);
     }
 
