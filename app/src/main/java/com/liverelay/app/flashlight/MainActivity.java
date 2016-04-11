@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
             mPowerButton.setColorFilter(Color.argb(255, 96, 224, 96));
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             isOn = true;
         }
     }
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         // Show the system bar
         mPowerButton.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         isOn = false;
     }
 
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     public boolean turnOffFlashLight() {
         autoOffHandler.removeCallbacksAndMessages(null);
-        mCamera.stopPreview();
+        if (mCamera != null) mCamera.stopPreview();
         return setFlashMode(false);
     }
 

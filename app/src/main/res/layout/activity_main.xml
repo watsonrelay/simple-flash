@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:keepScreenOn="true"
         android:src="@drawable/power_symbol" />
 
 </FrameLayout>
