@@ -59,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        turnOff();
+    }
+
+    @Override
     public void surfaceChanged(SurfaceHolder holder, int i1, int i2, int i3) {
         mSurfaceHolder = holder;
     }
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         }
     }
 
+    @SuppressLint("InlinedApi")
     private void turnOn() {
         if (turnOnFlashLight()) {
             // Hide UI first
